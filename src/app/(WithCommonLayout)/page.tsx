@@ -1,8 +1,12 @@
 import { Home } from "@/src/components/home/Home";
+import RecentlyFoundedItem from "@/src/components/home/RecentlyFoundedItem";
 
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
-    <Home />
+    <>
+      <Home />
+      <RecentlyFoundedItem />
+    </>
   );
 }
