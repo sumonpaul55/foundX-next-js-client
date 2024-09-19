@@ -4,9 +4,9 @@ import React, { ReactNode } from 'react'
 
 const layout = ({ children }: { children: ReactNode }) => {
     return (
-        <div className="relative flex flex-col h-screen">
+        <>
             <Navbar />
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+            <main className="">
                 {children}
             </main>
             <footer className="w-full flex items-center justify-center py-3">
@@ -20,7 +20,7 @@ const layout = ({ children }: { children: ReactNode }) => {
                     <p className="text-primary">NextUI</p>
                 </Link>
             </footer>
-        </div>
+        </>
     )
 }
 
