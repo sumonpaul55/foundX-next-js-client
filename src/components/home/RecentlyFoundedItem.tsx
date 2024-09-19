@@ -1,10 +1,11 @@
 import React from 'react'
 import Container from '../UI/Container'
 import { Button } from '@nextui-org/button'
+import { getRecentPosts } from '@/src/services/RecenetPosts'
 
 const RecentlyFoundedItem = async () => {
-    const res = await fetch("http://localhost:5000/api/v1/items?sortBy=createdAt&limit=9")
-    const data = await res.json()
+    const data = await getRecentPosts()
+    console.log(data)
     return (
         <Container>
             <div className='text-center'>
@@ -12,6 +13,13 @@ const RecentlyFoundedItem = async () => {
                 <p className='mt-4'>A list of items that have been recently found and reporeted</p>
             </div>
             <div className='text-center mt-16'>
+                <div>
+                    {
+                        data?.data?.map((item: any, idx: number) => (
+                            <h2 key={idx}>{item.title}</h2>
+                        ))
+                    }
+                </div>
                 <Button>View All</Button>
             </div>
         </Container>
