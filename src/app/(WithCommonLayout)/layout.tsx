@@ -9,9 +9,8 @@ const layout = ({ children }: { children: ReactNode }) => {
             <main className="">
                 {children}
             </main>
-            <footer className="w-full flex items-center justify-center py-3">
+            <footer className="w-full flex items-center justify-center py-3 md:py-20">
                 <Link
-
                     className="flex items-center gap-1 text-current"
                     href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
                     title="nextui.org homepage"
