@@ -13,7 +13,7 @@ const RecentlyFoundedItem = async () => {
                 <p className='mt-4'>A list of items that have been recently found and reporeted</p>
             </div>
             <div className='text-center mt-16'>
-                <div>
+                <div className='mb-10'>
                     {
                         data?.data?.map((item: any, idx: number) => (
                             <h2 key={idx}>{item.title}</h2>
