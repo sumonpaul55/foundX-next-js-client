@@ -9,14 +9,14 @@ import React from 'react'
 const FoundedItemsCard = ({ post }: { post: TFounditemsElements }) => {
     const { title, category, images, city, dateFound, _id, location } = post;
 
-
     return (
         <>
             <Card isFooterBlurred className='h-[300px] w-full'>
                 <CardHeader>
-                    <p className='absolute top-1 right-1 p-2 bg-black rounded-full text-tiny uppercase md:text-lg font-bold tex-white bg-opacity-60'>{category?.name}</p>
+                    <p className='absolute top-1 right-1 p-2 bg-black rounded-full text-tiny uppercase font-bold tex-white'>{category?.name}</p>
 
                 </CardHeader>
+                <h2 className='absolute text-white  md:text-lg rounded-lg top-5 left-1 bg-black p-1 bg-opacity-60 z-20'>{title}</h2>
                 {
                     images?.map((tiem: string, idx: number) => (
                         <Image
@@ -31,7 +31,7 @@ const FoundedItemsCard = ({ post }: { post: TFounditemsElements }) => {
                 }
                 <CardFooter className="justify-between border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] bg-black bg-opacity-60 shadow-small ml-1 z-10">
                     <div className='justify-start flex flex-col items-start w-full'>
-                        <p className="text-tiny text-white/80 font-semibold">{location}</p>
+                        <p className="text-tiny text-white/80 font-semibold">{location}, {city}</p>
                         <p className='text-sm font-thin'>{format(new Date(dateFound), "dd MMM yyyy")}</p>
                     </div>
                     <Button className="text-tiny text-white bg-black/20" variant="flat" color="default" radius="lg" size="sm">

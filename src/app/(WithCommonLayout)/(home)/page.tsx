@@ -6,7 +6,7 @@ export default async function HomePage() {
   return (
     <>
       <Home />
-      <RecentlyFoundedItem />
+      {/* <RecentlyFoundedItem /> */}
     </>
   );
 }
