@@ -16,6 +16,10 @@ import { ThemeSwitch } from "./theme-switch";
 import { Logo } from "./icons";
 
 import { siteConfig } from "@/src/config/site";
+import { Avatar } from "@nextui-org/avatar";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/dropdown";
+import { Button } from "@nextui-org/button";
+import NavbarDropdown from "./UI/NavbarDropdown";
 
 export const Navbar = () => {
   return (
@@ -45,14 +49,11 @@ export const Navbar = () => {
         </ul>
       </NavbarContent>
 
-      <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
-        justify="end"
-      >
-        <NavbarItem className="hidden md:flex gap-2">
-          <ThemeSwitch />
-        </NavbarItem>
-      </NavbarContent>
+      <NavbarItem className="hidden md:flex gap-4">
+        <ThemeSwitch />
+        <NavbarDropdown />
+      </NavbarItem>
+
       <NavbarContent className="md:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
         <NavbarMenuToggle />
