@@ -1,3 +1,4 @@
+"use client"
 import React, { ReactNode } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 
@@ -13,20 +14,21 @@ interface TFormConfig {
 }
 
 const FXForm = ({ children, onSubmit, defaultValues, resolver }: IProps) => {
-    let formConfig: TFormConfig = {};
+    const formConfig: TFormConfig = {};
 
-    if (!!defaultValues) { // here !! mean if exist or truthy
-        formConfig = formConfig["defaultValues"]
+    if (defaultValues) { // here !! mean if exist or truthy
+        formConfig["defaultValues"] = defaultValues;
     }
-    if (!!resolver) { // here !! mean if exist or truthy
-        formConfig = formConfig["resolver"]
+    if (resolver) { // here !! mean if exist or truthy
+        formConfig["resolver"] = resolver;
     }
 
-    const method = useForm(formConfig);
+    const methods = useForm(formConfig);
 
-    const submitHandler = method.handleSubmit;
+    const submitHandler = methods.handleSubmit;
+
     return (
-        <FormProvider {...method}>
+        <FormProvider {...methods}>
             <form onSubmit={submitHandler(onSubmit)}>
                 {children}
             </form>
