@@ -6,11 +6,13 @@ import { FxInput } from '../../components/form/FxInput'
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod"
 import loginValidationSchema from '@/src/schemas/login.schema'
+import { registerUser } from '@/src/services/authService'
 
 
 const Registration = () => {
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        console.log(data)
+        const useData = { ...data, profilePhoto: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" }
+        registerUser(useData)
     }
     return (
         <div className='max-w-[500px] mx-auto p-4 md:p-7 border border-gray-800 rounded-2xl shadow mt-20'>
