@@ -9,17 +9,17 @@ interface IProps extends TFormConfig {
 }
 
 interface TFormConfig {
-    defaultValues?: Record<string, any> | any;
+    defaultValues?: Record<string, any>;
     resolver?: any
 }
 
 const FXForm = ({ children, onSubmit, defaultValues, resolver }: IProps) => {
     const formConfig: TFormConfig = {};
 
-    if (defaultValues) { // here !! mean if exist or truthy
+    if (!!defaultValues) { // here !! mean if exist or truthy
         formConfig["defaultValues"] = defaultValues;
     }
-    if (resolver) { // here !! mean if exist or truthy
+    if (!!resolver) { // here !! mean if exist or truthy
         formConfig["resolver"] = resolver;
     }
 

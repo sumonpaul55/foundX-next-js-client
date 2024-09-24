@@ -45,7 +45,7 @@ export const Navbar = () => {
           ))}
         </ul>
       </NavbarContent>
-
+      {/* drop down  */}
       <NavbarItem className="hidden md:flex gap-4">
         <ThemeSwitch />
         <NavbarDropdown />

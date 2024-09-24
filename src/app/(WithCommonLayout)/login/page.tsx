@@ -1,21 +1,39 @@
 "use client"
 import FXForm from '@/src/components/form/FXForm'
 import { Button } from '@nextui-org/button'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FxInput } from '../../../components/form/FxInput'
 import { FieldValues, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from "@hookform/resolvers/zod"
 import loginValidationSchema from '@/src/schemas/login.schema'
 import { userLogin } from '@/src/hooks/auth.hook'
 import LoadingBlur from '@/src/components/UI/LoadingBlur'
 import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { zodResolver } from '@hookform/resolvers/zod'
+
 
 
 const LoginPage = () => {
-    const { mutate, isPending } = userLogin()
+    const searchParams = useSearchParams();
+
+    const redirect = searchParams.get("redirect")
+    const router = useRouter()
+    const { mutate, isPending, isSuccess } = userLogin()
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         mutate(data)
     }
+
+    if (!isPending && isSuccess) {
+
+        if (redirect) {
+            router.push(redirect)
+        } else {
+            router.push("/")
+        }
+
+    }
+
+
     return (
         <>
             {
@@ -27,6 +45,7 @@ const LoginPage = () => {
                                     {/* <Input type="email" label="Email" name='email' /> */}
                                     <FxInput type='email' name='email' label='Email' />
                                     <FxInput type='password' name='password' label='Password' />
+
                                     <Button type='submit'>Login</Button>
                                 </div>
                             </FXForm>

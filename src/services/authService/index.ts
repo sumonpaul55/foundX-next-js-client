@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import axiosInstance from "@/src/lib/AxiosInstance";
 import { cookies } from "next/headers";
 import { FieldValues } from "react-hook-form";
+import { toast } from "sonner";
 
 export const registerUser = async (userData: FieldValues) => {
   try {
@@ -43,8 +44,13 @@ export const getCurrentUser = async () => {
       mobileNumber: decodedToken?.mobileNumber,
       role: decodedToken?.role,
       status: decodedToken?.status,
-      token: accessToken,
     };
   }
   return decodedToken;
+};
+
+// logout
+export const logout = () => {
+  cookies().delete("accessToken");
+  cookies().delete("refreshToken");
 };
