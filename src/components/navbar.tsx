@@ -16,9 +16,6 @@ import { ThemeSwitch } from "./theme-switch";
 import { Logo } from "./icons";
 
 import { siteConfig } from "@/src/config/site";
-import { Avatar } from "@nextui-org/avatar";
-import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/dropdown";
-import { Button } from "@nextui-org/button";
 import NavbarDropdown from "./UI/NavbarDropdown";
 
 export const Navbar = () => {

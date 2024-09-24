@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getCurrentUser } from "./services/authService";
+import { IUser } from "./types";
 
 type role = keyof typeof roleBaseRoutes;
 
@@ -17,17 +18,10 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // get user from decoded token
-  const currentUser = await getCurrentUser();
-  console.log(currentUser);
-
-  const user: { name?: string | undefined; token?: string | undefined; role?: string | undefined } = {
-    name: undefined,
-    token: undefined,
-    role: undefined,
-  };
+  const user = await getCurrentUser();
 
   // if user not exist go login
-  if (!user.token) {
+  if (!user) {
     if (AuthRoutes.includes(pathname)) {
       return NextResponse.next();
     } else {
@@ -46,5 +40,5 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/profile", "/admin", "/login", "/register", "/create-post"],
+  matcher: ["/profile", "/profile/:page*", "/admin", "/login", "/register", "/create-post"],
 };

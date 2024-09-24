@@ -21,7 +21,7 @@ const NavbarDropdown = () => {
                 <DropdownItem onClick={() => handleRouter("/profile/create-post")} key="create">Create Post</DropdownItem>
                 <DropdownItem onClick={() => handleRouter("/profile/claim-requests")} key="">Claim Requests</DropdownItem>
                 <DropdownItem onClick={() => handleRouter("/profile/settings")} key="settings">Settings</DropdownItem>
-
+                <DropdownItem className='bg-primary' onClick={() => ""} key="Logout">Log out</DropdownItem>
 
             </DropdownMenu>
         </Dropdown>
