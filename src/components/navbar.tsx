@@ -1,3 +1,4 @@
+"use client"
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -17,8 +18,10 @@ import { Logo } from "./icons";
 
 import { siteConfig } from "@/src/config/site";
 import NavbarDropdown from "./UI/NavbarDropdown";
+import { useUser } from "../context/user.provider";
 
 export const Navbar = () => {
+  const { user, isloading } = useUser();
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -45,11 +48,18 @@ export const Navbar = () => {
           ))}
         </ul>
       </NavbarContent>
+
+
+
       {/* drop down  */}
       <NavbarItem className="hidden md:flex gap-4">
         <ThemeSwitch />
-        <NavbarDropdown />
+        {
+          user?.email && !isloading ?
+            <NavbarDropdown name={user?.name} /> : <Link href="/login">Login</Link>
+        }
       </NavbarItem>
+
 
       <NavbarContent className="md:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />

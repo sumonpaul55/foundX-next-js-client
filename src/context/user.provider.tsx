@@ -1,5 +1,5 @@
 
-import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 import { IUser } from "../types";
 import { getCurrentUser } from "../services/authService";
 
@@ -13,7 +13,7 @@ type IUserProviderValues = {
     setUser: (user: IUser | null) => void;
 }
 
-const UserProvider = ({ children }: { children: ReactNode }) => {
+export const UserProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<IUser | null>(null)
     const [isloading, setIsLoading] = useState(false)
 
@@ -32,4 +32,14 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     return <UserContext.Provider value={{ user, isloading, setUser, setIsLoading }}>
         {children}
     </UserContext.Provider>
+}
+
+
+export const useUser = () => {
+    const context = useContext(UserContext)
+    // check the context is calling out side of the applicaiton or wraper
+    if (context === undefined) {
+        throw new Error("useUser should be invoked inside the wraper boundary or application")
+    }
+    return context
 }

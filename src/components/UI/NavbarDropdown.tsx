@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
-const NavbarDropdown = () => {
+const NavbarDropdown = ({ name = "name" }: { name?: string }) => {
     const router = useRouter();
     const handleRouter = (pathname: string) => {
         router.push(pathname)
@@ -14,7 +14,7 @@ const NavbarDropdown = () => {
     return (
         <Dropdown>
             <DropdownTrigger>
-                <Avatar name="Paul" className='cursor-pointer' />
+                <Avatar name={name} className='cursor-pointer' />
             </DropdownTrigger>
             <DropdownMenu aria-label="Static Actions">
                 <DropdownItem onClick={() => handleRouter("/profile")} key="new">Profile</DropdownItem>
