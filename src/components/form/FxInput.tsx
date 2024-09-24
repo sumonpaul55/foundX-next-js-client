@@ -14,8 +14,6 @@ interface TInputProps {
 export const FxInput = ({ variant = "bordered", size = "md", required = true, type = "text", name, label }: TInputProps) => {
 
     const { register, formState: { errors }, } = useFormContext();
-
-    console.log(errors[name])
     return (
         <Input {...register(name)} variant={variant} size={size} required={required} label={label} type={type} errorMessage={errors[name] ? (errors[name].message as string) : ''} isInvalid={!!errors[name]} />
     )

@@ -13,3 +13,27 @@ export type TFounditemsElements = {
   dateFound: string;
   _id: string;
 };
+
+export interface TDecodedUser {
+  _id: string;
+  name: string;
+  email: string;
+  mobileNumber: string;
+  role: string;
+  status: string;
+  iat: number;
+  exp: number;
+}
+
+export interface IUser {
+  _id: string;
+  name: string;
+  role: string;
+  email: string;
+  status: string;
+  mobileNumber: string;
+  profilePhoto: string;
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
+}
