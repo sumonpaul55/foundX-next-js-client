@@ -1,6 +1,7 @@
 
-import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { IUser } from "../types";
+import { getCurrentUser } from "../services/authService";
 
 
 const UserContext = createContext<IUserProviderValues | undefined>(undefined)
@@ -17,6 +18,15 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     const [isloading, setIsLoading] = useState(false)
 
 
+    const handleUser = async () => {
+        const user = await getCurrentUser();
+        setUser(user)
+    }
+
+    useEffect(() => {
+        handleUser()
+
+    }, [])
 
 
     return <UserContext.Provider value={{ user, isloading, setUser, setIsLoading }}>
