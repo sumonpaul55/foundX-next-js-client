@@ -1,20 +1,25 @@
 
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
+import { IUser } from "../types";
+
+
+const UserContext = createContext<IUserProviderValues | undefined>(undefined)
 
 type IUserProviderValues = {
-    user: string | null | undefined;
+    user: IUser | null | undefined;
     isloading: boolean | undefined;
-    setIsLoading: Dispatch<SetStateAction<undefined>>;
-    setUser: Dispatch<SetStateAction<undefined>>
-} | undefined
+    setIsLoading: Dispatch<SetStateAction<boolean>>;
+    setUser: (user: IUser | null) => void;
+}
 
-const UserContext = createContext<IUserProviderValues>(undefined)
+const UserProvider = ({ children }: { children: ReactNode }) => {
+    const [user, setUser] = useState<IUser | null>(null)
+    const [isloading, setIsLoading] = useState(false)
 
-const UserProvider = () => {
-    const [user, setUser] = useState()
-    const [isloading, setIsLoading] = useState()
+
+
 
     return <UserContext.Provider value={{ user, isloading, setUser, setIsLoading }}>
-
+        {children}
     </UserContext.Provider>
 }
