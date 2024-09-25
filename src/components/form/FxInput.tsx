@@ -1,18 +1,11 @@
 "use client"
 
+import { IInputs } from '@/src/types';
 import { Input } from '@nextui-org/input'
 import React from 'react'
 import { useFormContext } from 'react-hook-form';
 
-interface TInputProps {
-    variant?: 'flat' | "bordered" | "faded" | "underlined";
-    size?: "md" | "sm" | "lg";
-    required?: boolean;
-    type: string;
-    name: string;
-    label: string;
-    className?: string;
-}
+interface TInputProps extends IInputs { }
 
 export const FxInput = ({ variant = "bordered", size = "md", required = true, type = "text", name, label, className }: TInputProps) => {
 
@@ -20,6 +13,6 @@ export const FxInput = ({ variant = "bordered", size = "md", required = true, ty
 
 
     return (
-        <Input {...register(name)} className={className && className} variant={variant} size={size} required={required} label={label} type={type} errorMessage={errors[name] ? (errors[name].message as string) : ''} isInvalid={!!errors[name]} />
+        <Input {...register(name)} className={className && className} variant={variant} size={size} isRequired={required} label={label} type={type} errorMessage={errors[name] ? (errors[name].message as string) : ''} isInvalid={!!errors[name]} />
     )
 }

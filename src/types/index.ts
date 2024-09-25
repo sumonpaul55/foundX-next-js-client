@@ -37,3 +37,13 @@ export interface IUser {
   updatedAt?: string;
   __v?: number;
 }
+
+export interface IInputs {
+  required?: boolean;
+  type?: string;
+  name: string;
+  label: string;
+  className?: string;
+  variant?: "flat" | "bordered" | "faded" | "underlined";
+  size?: "md" | "sm" | "lg";
+}

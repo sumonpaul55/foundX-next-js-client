@@ -1,5 +1,7 @@
 "use client"
+import FxDatepicker from '@/src/components/form/FxDatepicker';
 import { FxInput } from '@/src/components/form/FxInput';
+import dateToIsonString from '@/src/utils/dateToISOstring';
 import { Button } from '@nextui-org/button';
 import { Divider } from '@nextui-org/divider';
 import React from 'react'
@@ -11,12 +13,16 @@ const CreatePost = () => {
     const { fields, append, remove } = useFieldArray({
         control,
         // this name should append anme and field name field name like (`quiestions${index}.value`)
-        name: "quiestions"
+        name: "quiestions",
+
+
     })
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         const formData = {
             ...data,
-            quiestions: data?.quiestions?.map((quiestion: { name: string; value: string }) => quiestion?.value)
+            quiestions: data?.quiestions?.map((quiestion: { name: string; value: string }) => quiestion?.value),
+            // get date as a iso string
+            dateFound: dateToIsonString(data.dateFound)
         }
         console.log(formData)
     }
@@ -25,9 +31,26 @@ const CreatePost = () => {
     }
     return (
         <div>
+            <h2 className='dark: text-white font-semibold'>Post a Found Item</h2>
             <FormProvider {...methods}>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <FxInput name='title' label='Title' type='text' />
+                    <div className='flex gap-2 items-center'>
+                        <FxInput name='title' label='Title' type='text' />
+                        <FxDatepicker label='Date' name="dateFound" />
+                    </div>
+                    <div className='flex gap-2 items-center mt-3'>
+                        <FxInput name='location' label='Location' type='text' />
+                        <FxInput name='city' label='City' type='text' />
+                    </div>
+                    <div className='flex gap-2 items-center mt-3'>
+                        <FxInput name='category' label='Category' type='text' />
+                        {/* <FxInput name='city' label='City' type='text' /> */}
+                    </div>
+
+
+
+
+
                     <Divider className='my-3' />
                     <div className='flex items-center justify-between'>
                         <h3>Owner Varification Quiestions</h3>
