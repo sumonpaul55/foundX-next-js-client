@@ -1,11 +1,35 @@
 "use client"
 import FxDatepicker from '@/src/components/form/FxDatepicker';
 import { FxInput } from '@/src/components/form/FxInput';
+import FxSelect from '@/src/components/form/FxSelect';
 import dateToIsonString from '@/src/utils/dateToISOstring';
 import { Button } from '@nextui-org/button';
 import { Divider } from '@nextui-org/divider';
 import React from 'react'
 import { FieldValues, FormProvider, SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
+
+
+
+const cityOptions = [
+    {
+        key: "dhaka",
+        label: "Dhaka"
+    },
+    {
+        key: "khulna",
+        label: "Khulna"
+    },
+    {
+        key: "rangpur",
+        label: "Rangpur"
+    },
+    {
+        key: "sylet",
+        label: "Sylet"
+    },
+
+]
+
 
 const CreatePost = () => {
     const methods = useForm();
@@ -40,7 +64,7 @@ const CreatePost = () => {
                     </div>
                     <div className='flex gap-2 items-center mt-3'>
                         <FxInput name='location' label='Location' type='text' />
-                        <FxInput name='city' label='City' type='text' />
+                        <FxSelect label='City' name='city' options={cityOptions} />
                     </div>
                     <div className='flex gap-2 items-center mt-3'>
                         <FxInput name='category' label='Category' type='text' />
