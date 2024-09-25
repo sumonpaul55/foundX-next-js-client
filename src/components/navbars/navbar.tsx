@@ -19,6 +19,7 @@ import { Logo } from "../icons";
 import { siteConfig } from "@/src/config/site";
 import NavbarDropdown from "../UI/NavbarDropdown";
 import { useUser } from "../../context/user.provider";
+import { Button } from "@nextui-org/button";
 
 export const Navbar = () => {
   const { user, isloading } = useUser();
@@ -57,7 +58,7 @@ export const Navbar = () => {
         <ThemeSwitch />
         {
           user?.email && !isloading ?
-            <NavbarDropdown /> : <Link href="/login">Login</Link>
+            <NavbarDropdown /> : <Button><Link href="/login">Login</Link></Button>
         }
       </NavbarItem>
 
