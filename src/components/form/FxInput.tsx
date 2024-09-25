@@ -10,15 +10,16 @@ interface TInputProps {
     required?: boolean;
     type: string;
     name: string;
-    label: string
+    label: string;
+    className?: string;
 }
 
-export const FxInput = ({ variant = "bordered", size = "md", required = true, type = "text", name, label }: TInputProps) => {
+export const FxInput = ({ variant = "bordered", size = "md", required = true, type = "text", name, label, className }: TInputProps) => {
 
     const { register, formState: { errors } } = useFormContext();
 
 
     return (
-        <Input {...register(name)} variant={variant} size={size} required={required} label={label} type={type} errorMessage={errors[name] ? (errors[name].message as string) : ''} isInvalid={!!errors[name]} />
+        <Input {...register(name)} className={className && className} variant={variant} size={size} required={required} label={label} type={type} errorMessage={errors[name] ? (errors[name].message as string) : ''} isInvalid={!!errors[name]} />
     )
 }

@@ -1,10 +1,20 @@
+import Sidebar from '@/src/components/navbars/Sidebar'
+import Container from '@/src/components/UI/Container'
 import React, { ReactNode } from 'react'
 
 const AdminLayout = ({ children }: { children: ReactNode }) => {
     return (
         <>
-            <h2>Admin Layout</h2>
-            {children}
+            <Container>
+                <div className='flex w-full my-3 gap-12'>
+                    <div className='w-2/5'>
+                        <Sidebar />
+                    </div>
+                    <div className='w-4/5'>
+                        {children}
+                    </div>
+                </div>
+            </Container>
         </>
     )
 }

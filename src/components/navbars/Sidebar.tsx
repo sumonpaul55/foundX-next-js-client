@@ -11,22 +11,27 @@ const Sidebar = () => {
     const { user, isloading } = useUser();
 
 
+
     return (
         <div>
             <Card isFooterBlurred>
                 {
-                    user?.profilePhoto && <Image src={user?.profilePhoto!} width={300} height={400} alt="User" />
+                    user?.profilePhoto && <Image src={user?.profilePhoto!} className='w-full' width={300} height={400} alt="User" />
                 }
-
                 <CardBody>
-                    <h2>Name: {user?.name}</h2>
-                    <p>Email: {user?.email}</p>
+                    <div className='flex justify-between items-center'>
+                        <div>
+                            <h2>Name: {user?.name}</h2>
+                            <p>Email: {user?.email}</p>
+                        </div>
+                        <p>Role: {user?.role}</p>
+                    </div>
                 </CardBody>
                 <CardFooter className=''>
-                    <Link href="/profile/create-post" className='w-full p-2 rounded-lg bg-transparent bg-gray-800'>Create Post</Link>
+                    <Link href="/profile/create-post" className='w-full p-2 rounded-lg bg-transparent bg-gray-500'>Create Post</Link>
                 </CardFooter>
             </Card>
-            <SideBarOption links={!isloading && user?.role === "admin" ? AdminLinks : userLink} key={user?.email}></SideBarOption>
+            <SideBarOption links={!isloading && user?.role === "ADMIN" ? AdminLinks : userLink} key={user?.email}></SideBarOption>
         </div>
     )
 }

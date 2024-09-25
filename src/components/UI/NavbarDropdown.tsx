@@ -24,15 +24,21 @@ const NavbarDropdown = () => {
             <DropdownTrigger>
                 <Avatar src={user?.profilePhoto} className='cursor-pointer' />
             </DropdownTrigger>
-            <DropdownMenu aria-label="Static Actions">
-                <DropdownItem onClick={() => handleRouter("/profile")} key="new">Profile</DropdownItem>
-                <DropdownItem onClick={() => handleRouter("/profile/about")} key="about">About</DropdownItem>
-                <DropdownItem onClick={() => handleRouter("/profile/create-post")} key="create">Create Post</DropdownItem>
-                <DropdownItem onClick={() => handleRouter("/profile/claim-requests")} key="">Claim Requests</DropdownItem>
-                <DropdownItem onClick={() => handleRouter("/profile/settings")} key="settings">Settings</DropdownItem>
-                <DropdownItem className='bg-primary' onClick={handleLogout} key="Logout">Log out</DropdownItem>
-
-            </DropdownMenu>
+            {
+                user?.role === "USER" ?
+                    <DropdownMenu aria-label="Static Actions">
+                        <DropdownItem onClick={() => handleRouter("/profile")} key="new">Profile</DropdownItem>
+                        <DropdownItem onClick={() => handleRouter("/profile/about")} key="about">About</DropdownItem>
+                        <DropdownItem onClick={() => handleRouter("/profile/create-post")} key="create">Create Post</DropdownItem>
+                        <DropdownItem onClick={() => handleRouter("/profile/claim-requests")} key="">Claim Requests</DropdownItem>
+                        <DropdownItem onClick={() => handleRouter("/profile/settings")} key="settings">Settings</DropdownItem>
+                        <DropdownItem className='bg-primary' onClick={handleLogout} key="Logout">Log out</DropdownItem>
+                    </DropdownMenu> :
+                    <DropdownMenu aria-label="Static Actions">
+                        <DropdownItem onClick={() => handleRouter("/admin")} key="new">Dashboard</DropdownItem>
+                        <DropdownItem className='bg-primary' onClick={handleLogout} key="Logout">Log out</DropdownItem>
+                    </DropdownMenu>
+            }
         </Dropdown>
     )
 }
