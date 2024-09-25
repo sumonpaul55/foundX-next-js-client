@@ -1,4 +1,4 @@
-import { Navbar } from '@/src/components/navbar'
+import { Navbar } from '@/src/components/navbars/navbar'
 import Link from 'next/link'
 import React, { ReactNode } from 'react'
 

@@ -24,7 +24,7 @@ export const userLogin = () => {
       toast.success("Loggedin successfully");
     },
     onError: (error: any) => {
-      toast.error(error);
+      toast.error(error?.message);
     },
   });
 };

@@ -15,7 +15,7 @@ interface TInputProps {
 
 export const FxInput = ({ variant = "bordered", size = "md", required = true, type = "text", name, label }: TInputProps) => {
 
-    const { register, formState: { errors }, } = useFormContext();
+    const { register, formState: { errors } } = useFormContext();
 
 
     return (

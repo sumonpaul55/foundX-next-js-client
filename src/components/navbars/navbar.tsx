@@ -13,12 +13,12 @@ import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
 
-import { ThemeSwitch } from "./theme-switch";
-import { Logo } from "./icons";
+import { ThemeSwitch } from "../theme-switch";
+import { Logo } from "../icons";
 
 import { siteConfig } from "@/src/config/site";
-import NavbarDropdown from "./UI/NavbarDropdown";
-import { useUser } from "../context/user.provider";
+import NavbarDropdown from "../UI/NavbarDropdown";
+import { useUser } from "../../context/user.provider";
 
 export const Navbar = () => {
   const { user, isloading } = useUser();
@@ -56,7 +56,7 @@ export const Navbar = () => {
         <ThemeSwitch />
         {
           user?.email && !isloading ?
-            <NavbarDropdown name={user?.name} /> : <Link href="/login">Login</Link>
+            <NavbarDropdown /> : <Link href="/login">Login</Link>
         }
       </NavbarItem>
 

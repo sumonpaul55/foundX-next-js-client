@@ -10,27 +10,34 @@ import LoadingBlur from '@/src/components/UI/LoadingBlur'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useUser } from '@/src/context/user.provider'
+import { toast } from 'sonner'
 
 
 
 const LoginPage = () => {
-    const searchParams = useSearchParams();
 
+    const searchParams = useSearchParams();
     const redirect = searchParams.get("redirect")
     const router = useRouter()
     const { mutate, isPending, isSuccess } = userLogin()
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        mutate(data)
+
+    const { setIsLoading } = useUser()
+    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+        try {
+            mutate(data)
+            setIsLoading(true)
+        } catch (error: any) {
+            toast.error(error?.message)
+        }
     }
 
     if (!isPending && isSuccess) {
-
         if (redirect) {
             router.push(redirect)
         } else {
             router.push("/")
         }
-
     }
 
 

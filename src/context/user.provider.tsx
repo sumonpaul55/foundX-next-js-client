@@ -15,18 +15,18 @@ type IUserProviderValues = {
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<IUser | null>(null)
-    const [isloading, setIsLoading] = useState(false)
+    const [isloading, setIsLoading] = useState(true)
 
 
     const handleUser = async () => {
         const user = await getCurrentUser();
         setUser(user)
+        setIsLoading(false)
     }
 
     useEffect(() => {
         handleUser()
-
-    }, [])
+    }, [isloading])
 
 
     return <UserContext.Provider value={{ user, isloading, setUser, setIsLoading }}>
