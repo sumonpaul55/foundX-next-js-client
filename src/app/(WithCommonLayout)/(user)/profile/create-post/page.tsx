@@ -8,22 +8,21 @@ import { FieldValues, FormProvider, SubmitHandler, useFieldArray, useForm } from
 const CreatePost = () => {
     const methods = useForm();
     const { control, handleSubmit } = methods;
-
-
-    const { fields, append } = useFieldArray({
+    const { fields, append, remove } = useFieldArray({
         control,
+        // this name should append anme and field name field name like (`quiestions${index}.value`)
         name: "quiestions"
     })
-
-
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        console.log(data)
+        const formData = {
+            ...data,
+            quiestions: data?.quiestions?.map((quiestion: { name: string; value: string }) => quiestion?.value)
+        }
+        console.log(formData)
     }
-
     const handledAppend = () => {
         append({ name: "quiestions" })
     }
-
     return (
         <div>
             <FormProvider {...methods}>
@@ -36,8 +35,9 @@ const CreatePost = () => {
                     </div>
                     {
                         fields?.map((field, index) => (
-                            <div key={field?.id} className='my-2' >
+                            <div key={field?.id} className='my-2 flex items-center justify-between gap-1' >
                                 <FxInput label='quiestion' name={`quiestions.${index}.value`} type='text' />
+                                <Button onClick={() => remove(index)}>Remove</Button>
                             </div>
                         ))
                     }
@@ -48,5 +48,4 @@ const CreatePost = () => {
         </div>
     )
 }
-
 export default CreatePost
