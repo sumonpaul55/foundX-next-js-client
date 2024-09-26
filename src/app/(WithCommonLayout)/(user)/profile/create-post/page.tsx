@@ -7,6 +7,7 @@ import dateToIsonString from '@/src/utils/dateToISOstring';
 import { allDistict } from '@bangladeshi/bangladesh-address';
 import { Button } from '@nextui-org/button';
 import { Divider } from '@nextui-org/divider';
+import Image from 'next/image';
 import React, { ChangeEvent, useState } from 'react'
 import { FieldValues, FormProvider, SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
 
@@ -19,12 +20,12 @@ const allcities = allDistict().sort().map((city: string) => ({
 const CreatePost = () => {
 
     const [imageFiles, setImageFiles] = useState<File[] | []>([])
+    const [imagePrviews, setImagePreviews] = useState<string[] | []>([])
 
     const { data: categories, isSuccess: categorySuccess } = useGetCategories()
 
     let categoryOption: { key: string; label: string }[] = []
 
-    console.log(imageFiles)
     categoryOption = categories?.data?.map((category: { _id: string; name: string }) => (
         {
             key: category?._id,
@@ -57,6 +58,14 @@ const CreatePost = () => {
     const handleImageFile = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files![0];
         setImageFiles((prev) => [...prev, file])
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreviews((prev) => [...prev, reader.result as string])
+            }
+            reader.readAsDataURL(file)
+        }
     }
 
 
@@ -81,6 +90,16 @@ const CreatePost = () => {
                             <label htmlFor="image" className='w-full flex bg-gray-800 cursor-pointer h-full items-center justify-center rounded-md'>Select Image</label>
                             <input onChange={(e) => handleImageFile(e)} type="file" id='image' multiple className='hidden' />
                         </div>
+                    </div>
+                    {/* preview image */}
+                    <div className='flex gap-4 items-center flex-wrap mt-2'>
+                        {
+                            imagePrviews.length > 0 && imagePrviews?.map((imgDataUrl: string, idx: number) => (
+                                <div key={idx} className='size-28 border-dashed p-1 border-1 rounded-md border-gray-400'>
+                                    <Image src={imgDataUrl} height={200} width={200} className='size-full object-cover object-center rounded' alt='Image' />
+                                </div>
+                            ))
+                        }
                     </div>
 
 
