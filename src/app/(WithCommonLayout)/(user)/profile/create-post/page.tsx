@@ -1,8 +1,12 @@
 "use client"
+import { PlusIcon, TrashIcon } from '@/src/asstes/icons';
 import FxDatepicker from '@/src/components/form/FxDatepicker';
+import { FxDescription } from '@/src/components/form/FxDescription';
 import { FxInput } from '@/src/components/form/FxInput';
 import FxSelect from '@/src/components/form/FxSelect';
+import { useUser } from '@/src/context/user.provider';
 import { useGetCategories } from '@/src/hooks/category.hook';
+import { useCreatePost } from '@/src/hooks/post.hook';
 import dateToIsonString from '@/src/utils/dateToISOstring';
 import { allDistict } from '@bangladeshi/bangladesh-address';
 import { Button } from '@nextui-org/button';
@@ -18,10 +22,10 @@ const allcities = allDistict().sort().map((city: string) => ({
 }))
 
 const CreatePost = () => {
-
+    const { mutate: handleCreatePost } = useCreatePost()
     const [imageFiles, setImageFiles] = useState<File[] | []>([])
     const [imagePrviews, setImagePreviews] = useState<string[] | []>([])
-
+    const { user } = useUser()
     const { data: categories, isSuccess: categorySuccess } = useGetCategories()
 
     let categoryOption: { key: string; label: string }[] = []
@@ -43,18 +47,26 @@ const CreatePost = () => {
 
     // onSubmit handle
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        const formData = {
+        const formData = new FormData();
+        const postData = {
             ...data,
-            quiestions: data?.quiestions?.map((quiestion: { name: string; value: string }) => quiestion?.value),
+            questions: data?.quiestions?.map((quiestion: { name: string; value: string }) => quiestion?.value),
             // get date as a iso string
-            dateFound: dateToIsonString(data.dateFound)
+            dateFound: dateToIsonString(data.dateFound),
+            user: user!._id
         }
-        console.log(formData)
+        formData.append("data", JSON.stringify(postData))
+
+        for (let image of imageFiles) {
+            formData.append("itemImages", image)
+        }
+        handleCreatePost(formData)
     }
+
+
     const handledAppend = () => {
         append({ name: "quiestions" })
     }
-
     const handleImageFile = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files![0];
         setImageFiles((prev) => [...prev, file])
@@ -101,18 +113,23 @@ const CreatePost = () => {
                             ))
                         }
                     </div>
-
-
+                    <div className='mt-3'>
+                        <FxDescription name="description" label="Description" />
+                    </div>
                     <Divider className='my-3' />
                     <div className='flex items-center justify-between'>
                         <h3>Owner Varification Quiestions</h3>
-                        <Button onClick={handledAppend}>Append</Button>
+                        <Button isIconOnly onClick={handledAppend}>
+                            <PlusIcon />
+                        </Button>
                     </div>
                     {
                         fields?.map((field, index) => (
                             <div key={field?.id} className='my-2 flex items-center justify-between gap-1' >
                                 <FxInput label='quiestion' name={`quiestions.${index}.value`} type='text' />
-                                <Button onClick={() => remove(index)}>Remove</Button>
+                                <Button onClick={() => remove(index)} isIconOnly className='p-2'>
+                                    <TrashIcon />
+                                </Button>
                             </div>
                         ))
                     }

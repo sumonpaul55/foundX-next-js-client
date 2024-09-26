@@ -14,7 +14,7 @@ import NextLink from "next/link";
 import clsx from "clsx";
 
 import { ThemeSwitch } from "../theme-switch";
-import { Logo } from "../icons";
+import { Logo } from "../../asstes/icons";
 
 import { siteConfig } from "@/src/config/site";
 import NavbarDropdown from "../UI/NavbarDropdown";

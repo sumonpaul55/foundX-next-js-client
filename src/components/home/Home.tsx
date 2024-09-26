@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from '../UI/Container'
 import { Input } from '@nextui-org/input'
-import { SearchIcon } from '../icons'
+import { SearchIcon } from '../../asstes/icons'
 
 export const Home = () => {
     return (
