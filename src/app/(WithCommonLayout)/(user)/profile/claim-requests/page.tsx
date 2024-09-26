@@ -1,8 +1,11 @@
+import Container from '@/src/components/UI/Container'
 import React from 'react'
 
 const ClainRequests = () => {
     return (
-        <div>ClainRequests</div>
+        <Container>
+            <div></div>
+        </Container>
     )
 }
 

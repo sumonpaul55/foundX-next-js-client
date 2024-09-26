@@ -12,6 +12,8 @@ export type TFounditemsElements = {
   city: string;
   dateFound: string;
   _id: string;
+  user?: string;
+  description?: string;
 };
 
 export interface TDecodedUser {
