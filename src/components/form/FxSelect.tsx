@@ -10,7 +10,7 @@ interface ISelectProps extends IInputs {
     }[]
 }
 
-const FxSelect = ({ options, name, label, className }: ISelectProps) => {
+const FxSelect = ({ options, name, label, className, disabled }: ISelectProps) => {
 
     const { register, formState: { errors } } = useFormContext()
     return (
@@ -18,7 +18,7 @@ const FxSelect = ({ options, name, label, className }: ISelectProps) => {
             label={label}
             placeholder="Select an animal"
             className={className}
-        >
+            isDisabled={disabled}>
             {
                 options?.map((option) => (
                     <SelectItem key={option.key}>{option.label}</SelectItem>
