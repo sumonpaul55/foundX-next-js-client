@@ -13,6 +13,7 @@ export type TFounditemsElements = {
   dateFound: string;
   _id: string;
   user?: string;
+  questions?: string[];
   description?: string;
 };
 

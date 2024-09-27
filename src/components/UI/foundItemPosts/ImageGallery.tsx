@@ -21,9 +21,9 @@ const ImageGallery = ({ images }: { images: string[] }) => {
             plugins={[lgThumbnail, lgZoom]}
         >
             {
-                images?.length > 0 && images?.map(img => (
+                images?.length > 0 && images?.map((img, idx: number) => (
                     <Link href={img}>
-                        <Image src={img} alt="Image" height={500} width={500} />
+                        <Image src={img} alt={`${img + idx}`} height={500} width={500} />
                     </Link>
                 ))
             }

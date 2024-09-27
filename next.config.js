@@ -6,20 +6,20 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'i.ibb.co.com',
+                hostname: '**',
             },
-            {
-                protocol: 'https',
-                hostname: 'res.cloudinary.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'cdn.pixabay.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'pixabay.com',
-            },
+            // {
+            //     protocol: 'https',
+            //     hostname: 'res.cloudinary.com',
+            // },
+            // {
+            //     protocol: 'https',
+            //     hostname: 'cdn.pixabay.com',
+            // },
+            // {
+            //     protocol: 'https',
+            //     hostname: 'pixabay.com',
+            // },
         ],
     },
 }

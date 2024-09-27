@@ -5,9 +5,14 @@ import { Avatar } from '@nextui-org/avatar';
 import { Link } from '@nextui-org/link';
 import React from 'react'
 import ImageGallery from './ImageGallery';
+import { Calendar, MapPin } from 'lucide-react';
+import { format } from 'date-fns';
+import { Button } from '@nextui-org/button';
+import ClaimRequestModal from '../../modals/ClaimRequestModal';
+import AuthenticationModal from '../../modals/AuthenticateModals';
 
 const FoundItem = ({ items }: { items: TFounditemsElements }) => {
-    const { title, dateFound, city, description, location, _id, images, user } = items;
+    const { title, dateFound, city, description, location, _id, images, user, questions } = items;
 
     const { name, email, profilePhoto } = (user as IUser | undefined) || {};
 
@@ -24,7 +29,7 @@ const FoundItem = ({ items }: { items: TFounditemsElements }) => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="border-b border-default-200 py-4">
+                <div className="border-b border-default-200 py-4">
                     <div className="mb-4 flex items-start justify-between">
                         <div>
                             <Link href={`/found-items/${_id}`}>
@@ -43,11 +48,11 @@ const FoundItem = ({ items }: { items: TFounditemsElements }) => {
                         </div>
                     </div>
                     <p>{description}</p>
-                </div> */}
+                </div>
 
                 <ImageGallery images={images} />
 
-                {/* <div className="mt-4 flex gap-5">
+                <div className="mt-4 flex gap-5">
                     {email !== loggedInUser?.email && (
                         <>
                             {loggedInUser?.email && (
@@ -62,7 +67,7 @@ const FoundItem = ({ items }: { items: TFounditemsElements }) => {
                     <Button variant="light" className="flex-1">
                         Share
                     </Button>
-                </div> */}
+                </div>
             </div>
         </div>
     )
