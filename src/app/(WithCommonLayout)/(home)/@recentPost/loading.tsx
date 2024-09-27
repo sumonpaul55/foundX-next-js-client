@@ -19,8 +19,8 @@ const LoadingRecentPost = async () => {
             <div className='text-center mt-16'>
                 <div className='mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 xl:grid-cols-4'>
                     {
-                        [...Array(9)].map(() => (
-                            <CardSkeleton></CardSkeleton>
+                        [...Array(9)].map((_, idx) => (
+                            <CardSkeleton key={idx}></CardSkeleton>
                         ))
                     }
                 </div>

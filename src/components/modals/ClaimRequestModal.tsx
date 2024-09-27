@@ -22,7 +22,6 @@ export default function ClaimRequestModal({ id, questions }: IProps) {
                 .filter((formElement) => formElement.startsWith("answer"))
                 .map((answer) => data[answer]),
         };
-
         handleClaimRequest(claimRequestData);
     };
 

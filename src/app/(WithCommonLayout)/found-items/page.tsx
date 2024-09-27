@@ -14,7 +14,7 @@ const FoundItems = async () => {
         <div>
             {
                 data?.data?.map((foundItems: TFounditemsElements, idx: number) => {
-                    return <FoundItem items={foundItems} />
+                    return <FoundItem items={foundItems} key={idx} />
                 })
             }
         </div>
