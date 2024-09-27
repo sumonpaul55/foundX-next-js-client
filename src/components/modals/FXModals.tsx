@@ -39,8 +39,7 @@ export default function FXModal({
             <Button
                 className={buttonClassName}
                 variant={buttonVariant}
-                onPress={onOpen}
-            >
+                onPress={onOpen}>
                 {buttonText}
             </Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>

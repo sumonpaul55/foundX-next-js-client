@@ -17,6 +17,7 @@ const FoundItem = ({ items }: { items: TFounditemsElements }) => {
     const { name, email, profilePhoto } = (user as IUser | undefined) || {};
 
     const { user: loggedInUser } = useUser();
+    // console.log("db email", email, "user email =", loggedInUser?.email)
     return (
         <div className="mb-2 rounded-md bg-default-100 p-4">
             <div className="border-b border-default-200 pb-2">
