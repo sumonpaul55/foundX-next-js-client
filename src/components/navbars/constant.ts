@@ -7,6 +7,10 @@ export const userLink = [
     href: "/profile/settings",
     label: "Settings",
   },
+  {
+    href: "/profile/received-calim-requiest",
+    label: "Received Claim Requiest",
+  },
 ];
 
 export const AdminLinks = [

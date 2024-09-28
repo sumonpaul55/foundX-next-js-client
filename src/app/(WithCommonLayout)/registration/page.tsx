@@ -11,8 +11,9 @@ import LoadingBlur from '@/src/components/UI/LoadingBlur'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 
+
 const Registration = () => {
-    const { mutate: handleUserRegistration, isPending } = useUserRegistration();
+    const { mutate: handleUserRegistration, isPending, } = useUserRegistration();
 
     // useEffect(() => {
     //     if (isPending) {
