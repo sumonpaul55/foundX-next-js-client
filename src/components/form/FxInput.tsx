@@ -11,7 +11,6 @@ export const FxInput = ({ variant = "bordered", size = "md", required = true, ty
 
     const { register, formState: { errors } } = useFormContext();
 
-
     return (
         <Input {...register(name)} className={className && className} variant={variant} size={size} isRequired={required} label={label} type={type} errorMessage={errors[name] ? (errors[name].message as string) : ''} isInvalid={!!errors[name]} />
     )

@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getCurrentUser } from "./services/authService";
-import { IUser } from "./types";
 
 type role = keyof typeof roleBaseRoutes;
 
